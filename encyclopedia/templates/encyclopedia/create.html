@@ -1,0 +1,28 @@
+{% extends "encyclopedia/layout.html"%}
+
+{% block title %}
+    Create Page Page
+{% endblock %}
+
+{% block body %}
+
+    <style>
+        textarea {
+            margin: 20px 0;
+        }
+        button > strong {
+            font-size: 15px;
+        }
+    </style>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="hidden" name="action" value="save">
+            <input type="text" name="name" placeholder="Entry title">
+            <textarea name="entry" maxlength="1200" minlength="150" class="form-control rounded-2 col-lg-6" rows="7" placeholder="Enter Your Text . . . (Min length 150 Char , Max length : 1200 Char)" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success"><strong>Create New</strong></button>
+    </form>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-fa">
+
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <style>
+            h3,input {
+                text-align: center;
+                border-radius: 5px;
+            }
+
+            input {
+                box-shadow: inset 7px 3px 3px #ccc;
+            }
+
+            .list {
+              margin: 10px; 
+            }
+
+            .list a {
+                color: black;
+            }
+
+            .list a:hover {
+                color: blue;
+            }
+        </style>
+
+        <div class="row">
+            <div class="sidebar col-lg-2 col-md-3">
+
+                <h3>Wiki</h3>
+                <hr color="black">
+
+                <form action="{% url 'search' %}" method="post">
+                    {% csrf_token %}
+                    <input class="search" type="text" name="q" placeholder="Wiki Search . . .">
+                </form>
+
+                <div class="list">
+                    <hr>
+                    <a href="{% url 'index' %}"> <strong>Home</strong> </a>
+                    <hr>
+                </div>
+
+                <div class="list">
+                    <a href="{% url 'create' %}"> <strong>Creat New Page</strong> </a>
+                    <hr>
+                </div>
+
+                <div class="list">
+                    <a href="{% url 'random' %}"> <strong>Random Page</strong> </a>
+                    <hr>
+                </div>
+
+                {% block nav %}
+                {% endblock %}
+
+            </div>
+
+            <div class="main col-lg-10 col-md-9">
+                {% block body %}
+                {% endblock %}
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
